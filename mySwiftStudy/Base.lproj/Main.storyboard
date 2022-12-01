@@ -60,18 +60,29 @@
                                     <segue destination="iQD-aU-ERU" kind="showDetail" id="vew-xS-VTj"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92B-lF-vgi">
+                                <rect key="frame" x="175.66666666666666" y="328" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="92B-lF-vgi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1aB-gc-otr"/>
                             <constraint firstItem="icx-kR-7gD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="90R-hY-ET4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u7L-2a-FMj" secondAttribute="trailing" id="DGV-sa-eRJ"/>
                             <constraint firstItem="u7L-2a-FMj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FyY-uT-4WV"/>
                             <constraint firstItem="u7L-2a-FMj" firstAttribute="top" secondItem="icx-kR-7gD" secondAttribute="bottom" constant="-229" id="LrF-AO-hvZ"/>
                             <constraint firstItem="u7L-2a-FMj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zfk-VM-ExK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u7L-2a-FMj" secondAttribute="bottom" id="rCx-v6-2aR"/>
+                            <constraint firstItem="92B-lF-vgi" firstAttribute="top" secondItem="icx-kR-7gD" secondAttribute="bottom" constant="40" id="rJK-wY-cOA"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="valueLabel" destination="92B-lF-vgi" id="e5H-CY-FDX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,11 +109,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7W-ed-0G1">
+                                <rect key="frame" x="153" y="176" width="87.333333333333314" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="라벨 변경"/>
+                                <connections>
+                                    <action selector="onClickLabelChangeButton:" destination="iQD-aU-ERU" eventType="touchUpInside" id="Ijq-gu-BsT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mJ-4p-Gj6">
+                                <rect key="frame" x="169.66666666666666" y="219" width="54" height="35"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="취소"/>
+                                <connections>
+                                    <action selector="onClickCancelButton:" destination="iQD-aU-ERU" eventType="touchUpInside" id="NR8-ZK-sDa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I7x-fP-U51"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="9mJ-4p-Gj6" firstAttribute="centerX" secondItem="W7W-ed-0G1" secondAttribute="centerX" id="494-0R-fkJ"/>
+                            <constraint firstItem="W7W-ed-0G1" firstAttribute="centerX" secondItem="y9A-Zz-CZY" secondAttribute="centerX" id="EEt-Z1-Fxt"/>
+                            <constraint firstItem="9mJ-4p-Gj6" firstAttribute="top" secondItem="W7W-ed-0G1" secondAttribute="bottom" constant="8" symbolic="YES" id="R3J-fU-iB5"/>
                             <constraint firstItem="y9A-Zz-CZY" firstAttribute="centerX" secondItem="I7x-fP-U51" secondAttribute="centerX" id="Ru3-GI-F99"/>
+                            <constraint firstItem="W7W-ed-0G1" firstAttribute="top" secondItem="y9A-Zz-CZY" secondAttribute="bottom" constant="40" id="UQ0-IR-ieL"/>
                             <constraint firstItem="y9A-Zz-CZY" firstAttribute="top" secondItem="I7x-fP-U51" secondAttribute="top" constant="43" id="Zgs-xR-0tA"/>
                             <constraint firstItem="I7x-fP-U51" firstAttribute="trailing" secondItem="y9A-Zz-CZY" secondAttribute="trailing" constant="20" id="e8p-a3-2dQ"/>
                             <constraint firstItem="y9A-Zz-CZY" firstAttribute="leading" secondItem="I7x-fP-U51" secondAttribute="leading" constant="20" id="zeL-Ri-QxL"/>
@@ -111,6 +143,7 @@
                     <navigationItem key="navigationItem" title="Title" id="wCc-MW-Eh3"/>
                     <connections>
                         <outlet property="inputField" destination="y9A-Zz-CZY" id="hda-8c-kSc"/>
+                        <outlet property="labelChangeButton" destination="W7W-ed-0G1" id="CUl-D3-Uz8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMi-c0-Et3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -121,6 +154,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

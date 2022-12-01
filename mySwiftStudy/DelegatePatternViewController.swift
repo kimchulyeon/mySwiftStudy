@@ -27,20 +27,29 @@ class DelegatePatternViewController: UIViewController {
 
     let list = ["Apple", "Google", "Microsoft"]
 
+    @IBOutlet weak var valueLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination.children.first as? UITextInputViewController {
+            print(vc)
+            vc.delegate = self
+        }
     }
 }
 
 
-// DATASOURCE
+// 테이블 DATASOURCE
 extension DelegatePatternViewController: UITableViewDataSource {
-    
+
     // required : 리스트 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
     }
-    
+
     // required : 셀 하나 하나에 대한 정의?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -49,9 +58,27 @@ extension DelegatePatternViewController: UITableViewDataSource {
     }
 }
 
-// DELEGATE
+// 테이블 DELEGATE
 extension DelegatePatternViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(list[indexPath.item])
     }
+}
+
+
+
+
+// 인풋 DELEGATE
+// UITextInputViewController에 선언한 DELEGATE
+extension DelegatePatternViewController: LabelInputConnectDelegate {
+    func inputConnect(_ vc: UIViewController, didInput value: String?) {
+        valueLabel.text = value
+    }
+
+    func inputConnectCancel(_ vc: UIViewController) {
+        print("Hello")
+        valueLabel.text = "Cancel"
+    }
+
+
 }
