@@ -19,6 +19,15 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u7L-2a-FMj">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="PNM-K1-jX4">
+                                    <rect key="frame" x="0.0" y="121.66666793823242" width="393" height="47"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Storyboard Reference"/>
+                                    <connections>
+                                        <segue destination="bwB-NL-OYs" kind="show" id="dAy-XZ-7IO"/>
+                                    </connections>
+                                </button>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="Jte-sw-PFd" style="IBUITableViewCellStyleDefault" id="WsN-cp-zwZ">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -43,12 +52,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="p1i-mw-k9G"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icx-kR-7gD">
+                                <rect key="frame" x="111.66666666666669" y="253" width="170" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="ViewController 추가"/>
+                                <connections>
+                                    <segue destination="iQD-aU-ERU" kind="show" id="cf4-7U-lHX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="icx-kR-7gD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="90R-hY-ET4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u7L-2a-FMj" secondAttribute="trailing" id="DGV-sa-eRJ"/>
                             <constraint firstItem="u7L-2a-FMj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FyY-uT-4WV"/>
+                            <constraint firstItem="u7L-2a-FMj" firstAttribute="top" secondItem="icx-kR-7gD" secondAttribute="bottom" constant="-229" id="LrF-AO-hvZ"/>
                             <constraint firstItem="u7L-2a-FMj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zfk-VM-ExK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u7L-2a-FMj" secondAttribute="bottom" id="rCx-v6-2aR"/>
                         </constraints>
@@ -56,7 +75,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="-2"/>
+            <point key="canvasLocation" x="138.1679389312977" y="-2.1126760563380285"/>
+        </scene>
+        <!--UITextViewController-->
+        <scene sceneID="1DI-dD-eAu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UIText" referencedIdentifier="UITextViewController" id="bwB-NL-OYs" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="loS-Gq-T77"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-YP-at7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="-2"/>
+        </scene>
+        <!--Text Input View Controller-->
+        <scene sceneID="Phl-d5-NNy">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="iQD-aU-ERU" customClass="UITextInputViewController" customModule="mySwiftStudy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="UITextInputViewController" id="Qr2-RO-y6A">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="I7x-fP-U51"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Ni-5F-MtK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JMi-c0-Et3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="720"/>
         </scene>
     </scenes>
     <resources>
