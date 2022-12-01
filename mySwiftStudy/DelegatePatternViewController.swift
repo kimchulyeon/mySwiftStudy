@@ -14,7 +14,11 @@
             - (ㄱ) ViewController 객체 안에서 구현
             - (ㄴ) extension으로 분리
     - 애플 개발자 문서 활용 : https://developer.apple.com/documentation/uikit/uitableviewdatasource
-    -
+    - 스토리보드 참조 Storyboard Reference
+        - 스토리보드 생성
+        - ViewController 생성하고 연결
+        - Main 스토리보드에서 storyboard reference 객체 생성
+        - 버튼같은 걸로 연결해서 어떻게 보여줄지 설정
  */
 
 import UIKit
