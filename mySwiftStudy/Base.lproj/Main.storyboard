@@ -57,7 +57,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="ViewController 추가"/>
                                 <connections>
-                                    <segue destination="iQD-aU-ERU" kind="show" id="cf4-7U-lHX"/>
+                                    <segue destination="iQD-aU-ERU" kind="showDetail" id="vew-xS-VTj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -80,24 +80,38 @@
         <!--UITextViewController-->
         <scene sceneID="1DI-dD-eAu">
             <objects>
-                <viewControllerPlaceholder storyboardName="UIText" referencedIdentifier="UITextViewController" id="bwB-NL-OYs" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="loS-Gq-T77"/>
-                </viewControllerPlaceholder>
+                <viewControllerPlaceholder storyboardName="UIText" referencedIdentifier="UITextViewController" id="bwB-NL-OYs" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-YP-at7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="755" y="-2"/>
         </scene>
-        <!--Text Input View Controller-->
+        <!--UITextInputViewController-->
         <scene sceneID="Phl-d5-NNy">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="iQD-aU-ERU" customClass="UITextInputViewController" customModule="mySwiftStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="UITextInputViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iQD-aU-ERU" customClass="UITextInputViewController" customModule="mySwiftStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="UITextInputViewController" id="Qr2-RO-y6A">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y9A-Zz-CZY">
+                                <rect key="frame" x="20" y="102" width="353" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="I7x-fP-U51"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="y9A-Zz-CZY" firstAttribute="centerX" secondItem="I7x-fP-U51" secondAttribute="centerX" id="Ru3-GI-F99"/>
+                            <constraint firstItem="y9A-Zz-CZY" firstAttribute="top" secondItem="I7x-fP-U51" secondAttribute="top" constant="43" id="Zgs-xR-0tA"/>
+                            <constraint firstItem="I7x-fP-U51" firstAttribute="trailing" secondItem="y9A-Zz-CZY" secondAttribute="trailing" constant="20" id="e8p-a3-2dQ"/>
+                            <constraint firstItem="y9A-Zz-CZY" firstAttribute="leading" secondItem="I7x-fP-U51" secondAttribute="leading" constant="20" id="zeL-Ri-QxL"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9Ni-5F-MtK"/>
+                    <navigationItem key="navigationItem" title="Title" id="wCc-MW-Eh3"/>
+                    <connections>
+                        <outlet property="inputField" destination="y9A-Zz-CZY" id="hda-8c-kSc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMi-c0-Et3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
