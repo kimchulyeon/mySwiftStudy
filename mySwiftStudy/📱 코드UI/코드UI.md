@@ -2,14 +2,14 @@
 ---
 목차
 
-[1. 기본 순서](#🥑-순서)
+[1. 기본 순서](#1.-순서)
 
-[2. UIButton](#🥑-uibutton)
+[2. UIButton](#2.-uibutton)
 
-[3. 커스텀 클래스 버튼](#🥑-커스텀-클래스-버튼)
+[3. 커스텀 클래스 버튼](#3.-커스텀-클래스-버튼)
 
 
-#### 🥑 순서
+### 1. 순서
 
  (1) 요소 생성
 ```
@@ -37,7 +37,7 @@ override func viewDidLoad() {
 ```
 ---
 
-#### 🥑 UIButton
+### 2. UIButton
 
 ```
 private lazy var goToSignUpPageButton: UIButton = {
@@ -64,7 +64,7 @@ private lazy var goToSignUpPageButton: UIButton = {
 }
 ```
 
-#### 🥑 커스텀 클래스 버튼
+### 3. 커스텀 클래스 버튼
 ```
 // 📌 커스텀 클래스 버튼 생성
 import UIKit
