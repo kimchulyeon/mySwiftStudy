@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E69F7352953E3F100BCF3EB /* 패키지관련.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E69F7342953E3F100BCF3EB /* 패키지관련.md */; };
+		6E69F7382953E48000BCF3EB /* 유저위치정보.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E69F7372953E48000BCF3EB /* 유저위치정보.md */; };
+		6E69F73B2953E6A600BCF3EB /* 맵킷.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E69F73A2953E6A600BCF3EB /* 맵킷.md */; };
+		6E69F73E2953E73700BCF3EB /* 델리게이트.md in Resources */ = {isa = PBXBuildFile; fileRef = 6E69F73D2953E73700BCF3EB /* 델리게이트.md */; };
 		6E8E6B8529375118003365CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E6B8429375118003365CF /* AppDelegate.swift */; };
 		6E8E6B8729375118003365CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E6B8629375118003365CF /* SceneDelegate.swift */; };
 		6E8E6B8C29375118003365CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E8E6B8A29375118003365CF /* Main.storyboard */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E69F7342953E3F100BCF3EB /* 패키지관련.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "패키지관련.md"; sourceTree = "<group>"; };
+		6E69F7372953E48000BCF3EB /* 유저위치정보.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "유저위치정보.md"; sourceTree = "<group>"; };
+		6E69F73A2953E6A600BCF3EB /* 맵킷.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "맵킷.md"; sourceTree = "<group>"; };
+		6E69F73D2953E73700BCF3EB /* 델리게이트.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "델리게이트.md"; sourceTree = "<group>"; };
 		6E8E6B8129375118003365CF /* mySwiftStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySwiftStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8E6B8429375118003365CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E8E6B8629375118003365CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +86,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E69F7332953E3B200BCF3EB /* 📱 XCODE패키지 */ = {
+			isa = PBXGroup;
+			children = (
+				6E69F7342953E3F100BCF3EB /* 패키지관련.md */,
+			);
+			name = "📱 XCODE패키지";
+			path = "XCODE패키지";
+			sourceTree = "<group>";
+		};
+		6E69F7362953E46200BCF3EB /* 📱 info.plist관련 */ = {
+			isa = PBXGroup;
+			children = (
+				6E69F7372953E48000BCF3EB /* 유저위치정보.md */,
+			);
+			name = "📱 info.plist관련";
+			path = "info.plist관련";
+			sourceTree = "<group>";
+		};
+		6E69F7392953E61900BCF3EB /* 📱 MapKit */ = {
+			isa = PBXGroup;
+			children = (
+				6E69F73A2953E6A600BCF3EB /* 맵킷.md */,
+			);
+			path = "📱 MapKit";
+			sourceTree = "<group>";
+		};
+		6E69F73C2953E72A00BCF3EB /* 델리게이트 */ = {
+			isa = PBXGroup;
+			children = (
+				6E69F73D2953E73700BCF3EB /* 델리게이트.md */,
+			);
+			name = "델리게이트";
+			path = "델리게이트";
+			sourceTree = "<group>";
+		};
 		6E8E6B7829375118003365CF = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +142,11 @@
 		6E8E6B8329375118003365CF /* mySwiftStudy */ = {
 			isa = PBXGroup;
 			children = (
-				6E8E6BBF29384CB9003365CF /* UITextView */,
+				6E69F73C2953E72A00BCF3EB /* 델리게이트 */,
+				6E69F7392953E61900BCF3EB /* 📱 MapKit */,
+				6E69F7362953E46200BCF3EB /* 📱 info.plist관련 */,
+				6E69F7332953E3B200BCF3EB /* 📱 XCODE패키지 */,
+				6E8E6BBF29384CB9003365CF /* 📱 UITextView */,
 				6E8E6B8429375118003365CF /* AppDelegate.swift */,
 				6E8E6B8629375118003365CF /* SceneDelegate.swift */,
 				6E8E6B8A29375118003365CF /* Main.storyboard */,
@@ -114,12 +161,13 @@
 			path = mySwiftStudy;
 			sourceTree = "<group>";
 		};
-		6E8E6BBF29384CB9003365CF /* UITextView */ = {
+		6E8E6BBF29384CB9003365CF /* 📱 UITextView */ = {
 			isa = PBXGroup;
 			children = (
 				6E8E6BC029384CEA003365CF /* UITextInputViewController.swift */,
 			);
-			path = UITextView;
+			name = "📱 UITextView";
+			path = "UITextView텍스트뷰";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,8 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E8E6B912937511A003365CF /* LaunchScreen.storyboard in Resources */,
+				6E69F7382953E48000BCF3EB /* 유저위치정보.md in Resources */,
+				6E69F73B2953E6A600BCF3EB /* 맵킷.md in Resources */,
 				6E8E6B8E2937511A003365CF /* Assets.xcassets in Resources */,
 				6E8E6B8C29375118003365CF /* Main.storyboard in Resources */,
+				6E69F7352953E3F100BCF3EB /* 패키지관련.md in Resources */,
+				6E69F73E2953E73700BCF3EB /* 델리게이트.md in Resources */,
 				6E8E6BBC293846F7003365CF /* UIText.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

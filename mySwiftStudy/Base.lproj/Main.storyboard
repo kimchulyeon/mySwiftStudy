@@ -81,6 +81,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="u7L-2a-FMj" id="P0k-r9-D19"/>
                         <outlet property="valueLabel" destination="92B-lF-vgi" id="e5H-CY-FDX"/>
                     </connections>
                 </viewController>

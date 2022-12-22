@@ -28,9 +28,13 @@ class DelegatePatternViewController: UIViewController {
     let list = ["Apple", "Google", "Microsoft"]
 
     @IBOutlet weak var valueLabel: UILabel!
-
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
