@@ -44,7 +44,7 @@ clears graphics context : 이전 내용을 완전히 지워주는 작업 (최적
 <br/>
 <br/>
 
-## 🤖 UIControl : UIView > UIControl > ...
+## 🤖 UIControl
 ---
 UIControl.state (normal, highlighted, dsabled, selected, focused, ...)
 
