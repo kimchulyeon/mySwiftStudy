@@ -2,7 +2,7 @@
 << 목차 >>
 
 - [UIView](#uiview)
-- [UIControl](#uicontrol)
+- [UIControl](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uicontrol)
 
 <br/>
 <br/>
