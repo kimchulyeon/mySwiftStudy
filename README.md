@@ -8,7 +8,7 @@
 <br/>
 
 ## 🤖 UIView
----
+
 ### 1. superview  >  subview
 subview들은 **배열**의 형태로 관리된다 : [subview]\()
 
@@ -45,7 +45,7 @@ clears graphics context : 이전 내용을 완전히 지워주는 작업 (최적
 <br/>
 
 ## 🤖 UIControl
----
+
 UIControl.state (normal, highlighted, dsabled, selected, focused, ...)
 
 target-action 패턴 : **addTarget(self, action:, for:)**
