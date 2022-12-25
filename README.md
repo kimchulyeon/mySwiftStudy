@@ -1,7 +1,7 @@
 # 📱 UIKit 공부
 << 목차 >>
 
-- [UIView](#uiview)
+- [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
 - [UIControl](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uicontrol)
 
 <br/>
