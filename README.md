@@ -2,11 +2,13 @@
 << 목차 >>
 
 - [UIView](#uiview)
-- [UIControl](#🤖-uicontrol)
+- [UIControl](#uicontrol)
 
+<br/>
 <br/>
 
 ## 🤖 UIView
+---
 ### 1. superview  >  subview
 subview들은 **배열**의 형태로 관리된다 : [subview]\()
 
@@ -40,9 +42,10 @@ opaque : 겹치는 부분을 계산 (최적화)
 clears graphics context : 이전 내용을 완전히 지워주는 작업 (최적화)
 
 <br/>
+<br/>
 
 ## 🤖 UIControl : UIView > UIControl > ...
-
+---
 UIControl.state (normal, highlighted, dsabled, selected, focused, ...)
 
 target-action 패턴 : **addTarget(self, action:, for:)**
@@ -51,6 +54,7 @@ loginButton.addTarget(self, action: loginHandler, for: .touchUpInside)
 ```
 많이 쓰이는 .touchUpInside --- .valueChanged
 
+<br/>
 <br/>
 
 
