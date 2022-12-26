@@ -128,12 +128,77 @@ button.setBackgroundImage(UIImage(named: "plus-normal"), for: .normal)
 
 ### 2. Switch
 
+<br/>
+
 ### 3. Slider
+
+<br/>
 
 ### 4. Page Control
 
+
+<br/>
+
 ### 5. Picker View | Date Picker
+
+<br/>
+
+#### picker view
+```
+let pv = UIPickerView()
+
+pv.datasource = self
+pv.delegate = self
+
+/**
+  ====[DataSource]====
+  func numberOfComponents : 스피닝메뉴 개수
+  func numberOfRowsInComponent : 메뉴 속 아이템 개수
+ */
+
+/**
+   ====[Delegate]====
+   func titleForRow || viewForRow
+   func didSelectRow : 특정 시점에서 선택한 값을 가져오려면 버튼과 함께 사용해야한다
+ */
+ @IBAction func report(_ sender: Any) {
+    guard let itemIndex = pv.selectedRow(component: 0) else { 
+      print("Not Fount")
+      return
+    }
+
+    print(데이터배열[itemIndex])
+ }
+```
+```
+let pk = UIPickerView()
+
+override func viewDidLoad() {
+  super.viewDidLoad()
+
+  pk.reloadAllComponents()
+  shuffle()
+}
+
+func shuffle() {
+  let randomIndex = Int.random(in: 0 ..< image.length) + image.length
+  pk.selectRow(randomIndex, incomponent: 0, animated: true)
+}
+```
 
 ### 6. Segmented Control
 
 ### 7. Stepper
+
+<br />
+## 📌 ETC
+
+### 1. map | compackMap (nil을 제거?)
+```
+let array = ["1", "2", "three", "//4", "5"]
+
+let mapped: [Int?] = array.map { Int($0) } // [1, 2, nil, nil, 5]
+
+let compactMapped: [Int] = array.compactMap { Int($0) } // [1, 2, 5]
+```
+
