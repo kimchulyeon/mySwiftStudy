@@ -135,7 +135,42 @@ button.setBackgroundImage(UIImage(named: "plus-normal"), for: .normal)
 <br/>
 
 ### 4. Page Control
+```
+let pc = UIPageControl()
 
+// 점 개수
+pc.numberOfPages = 데이터배열.count
+pc.currentPage = 0
+pc.pageIndicatorTintColor = UIColor.systemGray3
+pc.currentPageIndicatorTintColor = UIColor.systemBlue
+```
+
+#### 📌 [1] collection view와 page control을 연결 : scrollView 스크롤 액션으로
+```
+// collection view에서 scroll을 했을 때 Delegate
+extension ViewController: UIScrollViewDelegate {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let width = scrollView.bounds.size.width
+    let x = scrollView.contentOffset.x + (width / 2.0)
+    let newPage = Int(x / width)
+
+    if pc.currentPage !== newPage {
+      pc.currentPage = newPage // 스크롤할 때마다 page control의 페이지 업데이트
+    }
+  }
+}
+```
+
+#### 📌 [2] collection view와 page control을 연결 : pageControl 클릭 액션으로
+```
+let pc = UIPageControl()
+pc.addTarget(self, action: onChangePage, for: .valueChanged)
+
+@objc func onChangePage() {
+  let indexPath = IndexPath(row: pc.currentPage, section: 0)
+  collectionView.scrollToItem(at: indexPath, at: .centerHorizontally, anmated: true)
+}
+```
 
 <br/>
 
