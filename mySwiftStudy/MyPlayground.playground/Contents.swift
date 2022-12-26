@@ -1,4 +1,5 @@
 import UIKit
 
-let pc = UIPageControl()
-pc.size(forNumberOfPages: 1)
+let slider = UISlider()
+
+slider.isContinuous = false

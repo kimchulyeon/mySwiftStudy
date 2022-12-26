@@ -132,6 +132,24 @@ button.setBackgroundImage(UIImage(named: "plus-normal"), for: .normal)
 
 ### 3. Slider
 
+#### 값의 범위 : value | minimum | maximum
+
+#### 커스터마이징
+```
+let slider = UISlider()
+let img = UImage(systemName: "lightbulb")
+
+slider.setThumbImage(img, for .normal)
+slider.minimumTrackTintColor = UIColor.systemRed
+sldier.maximumTrackTinkColor = UIColor.black
+
+slider.setMinimumTrackImage(image: for:)
+slider.setMaximumTrackImage(image: for:)
+
+slider.isContinuous = false // 손을 떼면 값을 변경
+```
+
+
 <br/>
 
 ### 4. Page Control
