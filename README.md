@@ -3,6 +3,7 @@
 
 - [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
 - [UIControl](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uicontrol)
+- [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
 
 <br/>
 
@@ -244,6 +245,17 @@ func shuffle() {
 ### 7. Stepper
 
 <br />
+
+## 🤖 Daytour
+
+### 1. ViewController의 view.translatesAutoresizingMaskIntoConstraints = false 를 하면 스타일링이 망가진다. 이유는 ?
+
+### 2. navigationController?.pushViewController(controller, animated: true)할 때 view의 backgroundColor를 설정해주지 않으면 이전 페이지가 잔상처럼 보인다.
+
+### 3. 파이어베이스를 적용할 때 DATABASE_URL을 info.plist에 넣어줘야한다.
+
+<br />
+
 ## 📌 ETC
 
 ### 1. map | compackMap (nil을 제거?)
