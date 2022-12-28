@@ -7,8 +7,9 @@
 - [@IBInspectable](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-ibinspectable)
 - [그림자](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그림자)
 - [스택뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰)
-- [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰-활용)
+- [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰 활용)
 - [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
+- [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
 
 <br/>
 
@@ -343,14 +344,52 @@ NSLayoutContraint.activate([
   ...위치잡기
 ])
 
+// 1.
 cardStackView.addArrangedSubview(card1)
 cardStackView.addArrangedSubview(card2)
 cardStackView.addArrangedSubview(card3)
+
+// 2. UIStackView(arrangedSubview: [card1, card2, card3])
 ```
 
 <br />
 
 ## 🤖 스택뷰 활용
+스택뷰를 뷰에 embed 시킨다. (이거 보다 isLayoutMarginsRelativeArragement를 쓰자)
+```
+let leadingImgView = UIImageView()
+leadingImgView.image = UIImage(systemName: "pencil.circle.fill")
+leadingImgView.translateAutoresizingMaskIntoConstraints = false
+
+let centerLabel = UILabel()
+centerLabel.text = "스택뷰활용"
+centerLabel.translateAutoresizingMaskIntoConstraints = false
+
+let trailingImgView = UIImageView(image: UIImage(systemName: "perncil.circle.fill"))
+trailingImgView.translateAutoreszingMaskIntoConstraints = false
+
+// 📌
+let stackView: UIStackView = {
+  let stack = UIStackView(arrangedSubviews: [leadingImgView, centerLabel, trailingImgView])
+  stack.translatesAutoresizingMaskIntoConstraints = false
+  stack.spacing = 0
+  stack.alignment = .center
+  stack.axios = .horizontal
+  stack.distribution = .equalCentering
+  return stack
+}()
+
+view.addSubview(stackView)
+NSLayoutConstraint.activate([
+  stackView...,
+  // 📌📌📌 스택뷰 패딩 주기
+  stackView.isLayoutMarginsRelativeArrangement = true,
+  stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10,leading: 10,botton: 10,trailing: 10),
+  stackView.layer.borderColor = UIColor.systemBlue.cgColor,
+  stackView.layer.borderWidth = 2,
+  stackView.layer.cornerRadius = 10
+])
+```
 
 <br />
 
@@ -364,7 +403,7 @@ cardStackView.addArrangedSubview(card3)
 
 <br />
 
-## 🤖 커스텀뷰 
+## 🤖 커스텀뷰  
 
 ```
 // MyCardView.swift
@@ -413,6 +452,10 @@ cardStackView.addArrangedSubview(generateCardView())
 ```
 <br />
 
+## 🤖 스크롤뷰
+
+<br/>
+
 ## 📌 ETC
 
 ### 1. map | compackMap (nil을 제거?)
@@ -422,5 +465,36 @@ let array = ["1", "2", "three", "//4", "5"]
 let mapped: [Int?] = array.map { Int($0) } // [1, 2, nil, nil, 5]
 
 let compactMapped: [Int] = array.compactMap { Int($0) } // [1, 2, 5]
+```
+
+### 2. UILabel autoshrink : 글자 길이에 맞게 자동으로 폰트 크기 조절
+
+### 3. 상태바 속성 설정
+```
+/**
+  📌 앱 전체 상태바 설정
+  info.plist에서 View controller-based status bar apprearance 를 NO로 작성
+  AppDelegate.swift에서 (_: didFinishLaunchingWithOptions:) 메소드에 
+ */
+
+UIApplication.sharedApplication().statusBarStyle = .LightContent
+or
+UIApplication.shared.statusBarStyle = .lightContent
+
+/**
+  📌 특정 뷰에서의 상태바 설정
+  viewWillAppear()에
+ */
+UIApplication.sharedApplication().statusBarStyle = .LightContent
+or
+UIApplication.shared.statusBarStyle = .lightContent
+
+// viewWillAppear()을 사용했으니 viewWillDisappear()롤 상태바 원상복구 
+override func viewWillDisappear(animated: Bool) {
+  super.viewWillDisappear(animated)
+  UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+  or
+  UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+}
 ```
 
