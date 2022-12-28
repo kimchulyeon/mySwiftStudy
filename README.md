@@ -4,6 +4,11 @@
 - [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
 - [UIControl](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uicontrol)
 - [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
+- [@IBInspectable](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-ibinspectable)
+- [그림자](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그림자)
+- [스택뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰)
+- [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰 활용)
+- [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
 
 <br/>
 
@@ -246,6 +251,109 @@ func shuffle() {
 
 <br />
 
+## 🤖 @IBInspectable
+인터페이스 빌더에 설정 추가하기
+```
+// [1]
+@IBInspectable
+var borderWidth: CGFloat = 0 {
+  didSet {
+    self.layer.borderWidth = borderWidth
+  }
+}
+
+// [2]
+@IBInspectable
+var makeItCircle: Bool = false {
+  didSet {
+    if isSquare && makeItCircle {
+      self.layer.cornerRadius = self.layer.frame.width / 2
+    }
+  }
+}
+
+var isSquare: Bool {
+  get {
+    return self.layer.width == self.layer.height
+  }
+}
+```
+
+<br />
+
+## 🤖 그림자
+그림자 생성 로직을 CALayer객체에 extension
+```
+// CALayer+Extension
+extension CALayer(
+  func makeShadow {
+    color: UIColor = black,
+    alpha: Float = 0.5,
+    x: CGFloat = 0,
+    y: CGFloat = 2,
+    blur: CGFloat = 4,
+    spread: CGFloat = 0
+  ) {
+    masksToBounds = false
+    shadowColor = color.cgColor
+    shadowOpacity = alpha
+    shadowOffset = CGSize(width: x, height: y)
+    shadowRadius = blur / 2.0
+    if spread == 0 {
+      shadowPath == nil
+    } else {
+      let dx = -spread
+      let rect = bounds.insetBy(dx: dx, dy, dy)
+      shadowPath = UIBezierPath(rect: rect).cgPath
+    }
+  }
+}
+
+
+@IBInspectable 
+var hasShadow: Bool = false {
+  didSet {
+    if hasShadow {
+      layer.makeShadow()
+    }
+  }
+}
+```
+<br />
+
+## 🤖 스택뷰
+```
+let cardStackView = {
+  let stack = UIStackView()
+  stack.translatesAutoresizingMaskIntoConstraints = false
+  stack.spacing = 10
+  stack.alignment = .center
+  stack.axios = .horizontal
+  stack.distribution = .fillEqually
+  st
+  return stack
+}()
+let card1 = {...}()
+let card2 = {...}()
+let card3 = {...}()
+
+
+view.addSubview(cardStackView)
+NSLayoutContraint.activate([
+  ...위치잡기
+])
+
+cardStackView.addArrangedSubview(card1)
+cardStackView.addArrangedSubview(card2)
+cardStackView.addArrangedSubview(card3)
+```
+
+<br />
+
+## 🤖 스택뷰 활용
+
+<br />
+
 ## 🤖 Daytour
 
 ### 1. ViewController의 view.translatesAutoresizingMaskIntoConstraints = false 를 하면 스타일링이 망가진다. 이유는 ?
@@ -254,6 +362,55 @@ func shuffle() {
 
 ### 3. 파이어베이스를 적용할 때 DATABASE_URL을 info.plist에 넣어줘야한다.
 
+<br />
+
+## 🤖 커스텀뷰 
+
+```
+// MyCardView.swift
+
+import UIKit
+
+class MyCardView: UIView {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+
+    configureView()
+    ...
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+  }
+
+
+  func configureView() {
+    self.translatesAutoresizingMaskIntoConstraints = false
+    self.backgroundColor = .blue
+  }
+}
+
+// 📌 static function은 인스턴스를 메모리에 올리지 않고 실행된다.
+extension MyCardView {
+  static func generateMyCardView() -> MyCardView {
+    let cardView = MyCardView()
+    cardView.translatesAutorezsizingMaskIntoConstraints = false
+    ...
+    return cardView
+  }
+}
+
+// ⭐️ 사용법1
+cardStackView.addArrangedSubview(MyCardView.generateMyCardView)
+
+// ⭐️ 사용법2
+func generateCardView() {
+  let card = MyCardView()
+  ...
+  return card
+}
+cardStackView.addArrangedSubview(generateCardView())
+```
 <br />
 
 ## 📌 ETC
