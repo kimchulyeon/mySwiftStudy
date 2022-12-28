@@ -7,10 +7,9 @@
 - [@IBInspectable](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-ibinspectable)
 - [그림자](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그림자)
 - [스택뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰)
-- [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰-활용)
+- [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰 활용)
 - [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
 - [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
-- [기타등등](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
 <br/>
 
@@ -454,6 +453,40 @@ cardStackView.addArrangedSubview(generateCardView())
 <br />
 
 ## 🤖 스크롤뷰
+전체를 감싸는 컨테이너 뷰를 스크롤뷰에 넣으면 된다.
+```
+	private let containerView: UIView = {
+		let view = UIView()
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
+	}()
+private let containerScrollView: UIScrollView = {
+  let sv = UIScrollView()
+  sv.translatesAutoresizingMaskIntoConstraints = false
+  sv.alwaysBounceVertical = true
+  sv.isUserInteractionEnabled = true
+  return sv
+}()
+
+view.addSubview(containerScrollView)
+  NSLayoutConstraint.activate([
+    containerScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+    containerScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+    containerScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+    containerScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+  ])
+
+containerScrollView.addSubview(containerView)
+NSLayoutConstraint.activate([
+  containerView.leadingAnchor.constraint(equalTo: containerScrollView.contentLayoutGuide.leadingAnchor),
+  containerView.trailingAnchor.constraint(equalTo: containerScrollView.contentLayoutGuide.trailingAnchor),
+  containerView.topAnchor.constraint(equalTo: containerScrollView.contentLayoutGuide.topAnchor),
+  containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+  // 📌 containerView.bottomAnchor.constraint(equalTo: containerScrollView.contentLayoutGuide.bottomAnchor)
+  
+  containerView.widthAnchor.constraint(equalTo: containerScrollView.frameLayoutGuide.widthAnchor)
+])
+```
 
 <br/>
 
@@ -499,3 +532,33 @@ override func viewWillDisappear(animated: Bool) {
 }
 ```
 
+#### 4. swiftui preview 사용하기 
+```
+#if DEBUG
+import SwiftUI
+
+strunc MainViewControllerPresentable: UIViewControllerRepresentable {
+  func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+
+  }
+  func makeUIViewController(context: Context) -> some UIViewController {
+    <#name#>
+  }
+}
+
+struct ViewControllerPrepresentable_PreviewProvider: PreviewProvider {
+  static var previews: some View {
+    MainViewControllerPresentable()
+      .previewDevice("iphone 12 mini")
+      .previewDisplayName("iphone 12 mini")
+      .ignoresSafeArea()
+  }
+}
+
+#endif
+
+// opt + cmd + ENTER
+// opt + cmd + P
+```
+
+#### 5. 뭔가 안될 때는 오토레이아웃 문제일 가능성이 높다. : 배경색 넣고 확인
