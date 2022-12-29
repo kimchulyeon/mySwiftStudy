@@ -393,16 +393,6 @@ NSLayoutConstraint.activate([
 
 <br />
 
-## 🤖 Daytour
-
-### 1. ViewController의 view.translatesAutoresizingMaskIntoConstraints = false 를 하면 스타일링이 망가진다. 이유는 ?
-
-### 2. navigationController?.pushViewController(controller, animated: true)할 때 view의 backgroundColor를 설정해주지 않으면 이전 페이지가 잔상처럼 보인다.
-
-### 3. 파이어베이스를 적용할 때 DATABASE_URL을 info.plist에 넣어줘야한다.
-
-<br />
-
 ## 🤖 커스텀뷰  
 
 ```
@@ -455,11 +445,11 @@ cardStackView.addArrangedSubview(generateCardView())
 ## 🤖 스크롤뷰
 전체를 감싸는 컨테이너 뷰를 스크롤뷰에 넣으면 된다.
 ```
-	private let containerView: UIView = {
-		let view = UIView()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		return view
-	}()
+private let containerView: UIView = {
+	let view = UIView()
+	view.translatesAutoresizingMaskIntoConstraints = false
+	return view
+}()
 private let containerScrollView: UIScrollView = {
   let sv = UIScrollView()
   sv.translatesAutoresizingMaskIntoConstraints = false
@@ -488,7 +478,19 @@ NSLayoutConstraint.activate([
 ])
 ```
 
+<br />
+
+## 🤖 Daytour
+
+### 1. ViewController의 view.translatesAutoresizingMaskIntoConstraints = false 를 하면 스타일링이 망가진다. 이유는 ?
+
+### 2. navigationController?.pushViewController(controller, animated: true)할 때 view의 backgroundColor를 설정해주지 않으면 이전 페이지가 잔상처럼 보인다.
+
+### 3. 파이어베이스를 적용할 때 DATABASE_URL을 info.plist에 넣어줘야한다.
+
 <br/>
+
+
 
 ## 📌 ETC
 
