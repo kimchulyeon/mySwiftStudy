@@ -536,7 +536,7 @@ override func viewWillDisappear(animated: Bool) {
 }
 ```
 
-#### 4. swiftui preview 사용하기 
+### 4. swiftui preview 사용하기 
 ```
 #if DEBUG
 import SwiftUI
@@ -565,4 +565,10 @@ struct ViewControllerPrepresentable_PreviewProvider: PreviewProvider {
 // opt + cmd + P
 ```
 
-#### 5. 뭔가 안될 때는 오토레이아웃 문제일 가능성이 높다. : 배경색 넣고 확인
+### 5. 뭔가 안될 때는 오토레이아웃 문제일 가능성이 높다. : 배경색 넣고 확인
+
+### 6. UIView 마진
+```
+isLayoutMarginsRelativeArrangement = true
+layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
+```
