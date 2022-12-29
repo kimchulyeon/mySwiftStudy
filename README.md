@@ -10,6 +10,8 @@
 - [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰-활용)
 - [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
 - [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
+- [Daytour](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
+- [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
 <br/>
 
