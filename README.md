@@ -3,14 +3,13 @@
 
 - [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
 - [UIControl](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uicontrol)
-- [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
 - [@IBInspectable](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-ibinspectable)
 - [그림자](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그림자)
 - [스택뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰)
 - [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰-활용)
 - [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
 - [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
-- [Daytour](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
+- [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
 - [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
 <br/>
@@ -571,4 +570,14 @@ struct ViewControllerPrepresentable_PreviewProvider: PreviewProvider {
 ```
 isLayoutMarginsRelativeArrangement = true
 layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
+```
+
+### 7. UILabel.attributedText
+```
+private let infoLabel: UILabel = {
+  let label = UILabel()
+  let attributedText = NSMutableAttributedString(string: "info", attributes: [.font: UIFont.systemFont(ofSize: 32)])
+  label.attributedText = attributedText
+  return label
+}()
 ```
