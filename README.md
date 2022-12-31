@@ -56,7 +56,7 @@ UIControl.state (normal, highlighted, dsabled, selected, focused, ...)
 
 target-action 패턴 : **addTarget(self, action:, for:)**
 ```
-loginButton.addTarget(self, action: loginHandler, for: .touchUpInside)
+loginButton.addTarget(self, action: #selctor(loginHandler), for: .touchUpInside)
 ```
 많이 쓰이는 .touchUpInside --- .valueChanged
 
