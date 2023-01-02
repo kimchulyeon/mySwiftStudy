@@ -1,4 +1,5 @@
 # 📱 UIKit 공부
+
 << 목차 >>
 
 - [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
@@ -10,6 +11,8 @@
 - [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
 - [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
 - [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
+- [그라데이션](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그라데이션)
+- [MapKit](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mapkit)
 - [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
 - [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
@@ -17,14 +20,18 @@
 
 ## 🤖 UIView
 
-### 1. superview  >  subview
+### 1. superview > subview
+
 subview들은 **배열**의 형태로 관리된다 : [subview]\()
 
-### 2.  frame - CGRect - CGPoint(x, y) : 위치 - CGSize(width, hegith) : 크기
+### 2. frame - CGRect - CGPoint(x, y) : 위치 - CGSize(width, hegith) : 크기
+
 **frame과 bounds의 차이**는 bounds는 CGSize만 다룬다 CGPoint의 값은 (0, 0)
 
-### 3. view tagging 
+### 3. view tagging
+
 뷰의 tag 속성값으로 IBOutlet대신 해당 뷰에 접근할 수 있다.
+
 ```
 @IBAction func changeColor(_ sender: Any) {
   if let v = view.viewWithTag(0) {
@@ -32,18 +39,21 @@ subview들은 **배열**의 형태로 관리된다 : [subview]\()
   }
 }
 ```
-### 4. touch event 
+
+### 4. touch event
+
 interaction
 
 - user interaction enabled
 - multiple touch
 
 ### 5. etc
+
 alpha : 투명도
 
 hidden: 숨기기
 
-clipsToBounds | masksToBounds : 뷰 프레임을 벗어난 부분 
+clipsToBounds | masksToBounds : 뷰 프레임을 벗어난 부분
 
 opaque : 겹치는 부분을 계산 (최적화)
 
@@ -56,18 +66,21 @@ clears graphics context : 이전 내용을 완전히 지워주는 작업 (최적
 UIControl.state (normal, highlighted, dsabled, selected, focused, ...)
 
 target-action 패턴 : **addTarget(self, action:, for:)**
+
 ```
 loginButton.addTarget(self, action: #selctor(loginHandler), for: .touchUpInside)
 ```
+
 많이 쓰이는 .touchUpInside --- .valueChanged
 
 <br/>
 
-
 ### 1. Button
+
 #### 타입 : .system | .detailDisclosure | .infoLight | .infoDark | .addContact | .close | .custom
 
 #### 상태 : .normal | .disabled | .focused | .highlighted | .selected
+
 ```
 // 상태에 따라 라벨 텍스트 변경
 @IBAction func report(_ sender: UIButton) {
@@ -116,7 +129,8 @@ extension UIButton.State {
 }
 ```
 
-#### 타이틀 : 다섯가지 상태에 따라 버튼의 타이틀을 설정해줄 수 있다  
+#### 타이틀 : 다섯가지 상태에 따라 버튼의 타이틀을 설정해줄 수 있다
+
 ```
 button.setTitle("노말", for: .normal)
 button.setTitleColor(.systemBlue, for: .noraml)
@@ -124,15 +138,19 @@ button.setTitleColor(.systemBlue, for: .noraml)
 button.setTitle("하이라이트", for: .highlighted)
 button.setTitleColor(.systemYellow, for: .highlighted)
 ```
+
 #### 버튼 이미지 : 이미지 위치 조정이 까다로워 스택뷰와 이미지, 라벨 위에 버튼을 사용하는게 좋다
+
 ```
 button.setImage(UIImage(named: "plus-normal"), for: .normal)
 ```
 
 #### 배경 이미지 : content mode가 조정되지 않으므로 버튼 이미지와 같은 방법으로 생성하는게 좋다
+
 ```
 button.setBackgroundImage(UIImage(named: "plus-normal"), for: .normal)
 ```
+
 <br/>
 
 ### 2. Switch
@@ -144,6 +162,7 @@ button.setBackgroundImage(UIImage(named: "plus-normal"), for: .normal)
 #### 값의 범위 : value | minimum | maximum
 
 #### 커스터마이징
+
 ```
 let slider = UISlider()
 let img = UImage(systemName: "lightbulb")
@@ -158,10 +177,10 @@ slider.setMaximumTrackImage(image: for:)
 slider.isContinuous = false // 손을 떼면 값을 변경
 ```
 
-
 <br/>
 
 ### 4. Page Control
+
 ```
 let pc = UIPageControl()
 
@@ -173,6 +192,7 @@ pc.currentPageIndicatorTintColor = UIColor.systemBlue
 ```
 
 #### 📌 [1] collection view와 page control을 연결 : scrollView 스크롤 액션으로
+
 ```
 // collection view에서 scroll을 했을 때 Delegate
 extension ViewController: UIScrollViewDelegate {
@@ -189,6 +209,7 @@ extension ViewController: UIScrollViewDelegate {
 ```
 
 #### 📌 [2] collection view와 page control을 연결 : pageControl 클릭 액션으로
+
 ```
 let pc = UIPageControl()
 pc.addTarget(self, action: onChangePage, for: .valueChanged)
@@ -206,6 +227,7 @@ pc.addTarget(self, action: onChangePage, for: .valueChanged)
 <br/>
 
 #### picker view
+
 ```
 let pv = UIPickerView()
 
@@ -224,7 +246,7 @@ pv.delegate = self
    func didSelectRow : 특정 시점에서 선택한 값을 가져오려면 버튼과 함께 사용해야한다
  */
  @IBAction func report(_ sender: Any) {
-    guard let itemIndex = pv.selectedRow(component: 0) else { 
+    guard let itemIndex = pv.selectedRow(component: 0) else {
       print("Not Fount")
       return
     }
@@ -232,6 +254,7 @@ pv.delegate = self
     print(데이터배열[itemIndex])
  }
 ```
+
 ```
 let pk = UIPickerView()
 
@@ -255,7 +278,9 @@ func shuffle() {
 <br />
 
 ## 🤖 @IBInspectable
+
 인터페이스 빌더에 설정 추가하기
+
 ```
 // [1]
 @IBInspectable
@@ -285,7 +310,9 @@ var isSquare: Bool {
 <br />
 
 ## 🤖 그림자
+
 그림자 생성 로직을 CALayer객체에 extension
+
 ```
 // CALayer+Extension
 extension CALayer(
@@ -313,7 +340,7 @@ extension CALayer(
 }
 
 
-@IBInspectable 
+@IBInspectable
 var hasShadow: Bool = false {
   didSet {
     if hasShadow {
@@ -322,9 +349,11 @@ var hasShadow: Bool = false {
   }
 }
 ```
+
 <br />
 
 ## 🤖 스택뷰
+
 ```
 let cardStackView = {
   let stack = UIStackView()
@@ -357,7 +386,9 @@ cardStackView.addArrangedSubview(card3)
 <br />
 
 ## 🤖 스택뷰 활용
+
 스택뷰를 뷰에 embed 시킨다. (이거 보다 isLayoutMarginsRelativeArragement를 쓰자)
+
 ```
 let leadingImgView = UIImageView()
 leadingImgView.image = UIImage(systemName: "pencil.circle.fill")
@@ -395,7 +426,7 @@ NSLayoutConstraint.activate([
 
 <br />
 
-## 🤖 커스텀뷰  
+## 🤖 커스텀뷰
 
 ```
 // MyCardView.swift
@@ -409,7 +440,7 @@ class MyCardView: UIView {
     configureView()
     ...
   }
-  
+
   required init?(coder: NSCoder) {
     super.init(coder: coder)
   }
@@ -442,10 +473,13 @@ func generateCardView() {
 }
 cardStackView.addArrangedSubview(generateCardView())
 ```
+
 <br />
 
 ## 🤖 스크롤뷰
+
 전체를 감싸는 컨테이너 뷰를 스크롤뷰에 넣으면 된다.
+
 ```
 private let containerView: UIView = {
 	let view = UIView()
@@ -475,7 +509,7 @@ NSLayoutConstraint.activate([
   containerView.topAnchor.constraint(equalTo: containerScrollView.contentLayoutGuide.topAnchor),
   containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
   // 📌 containerView.bottomAnchor.constraint(equalTo: containerScrollView.contentLayoutGuide.bottomAnchor)
-  
+
   containerView.widthAnchor.constraint(equalTo: containerScrollView.frameLayoutGuide.widthAnchor)
 ])
 ```
@@ -484,13 +518,15 @@ NSLayoutConstraint.activate([
 
 ## 🤖 제스쳐
 
-### 1. Tap 제스쳐 
+### 1. Tap 제스쳐
+
 ```
 let tap = UITapGestureRecignizer(target: self, action: #selector(handleTapGesture))
 addGestureRecognizer(tap)
 ```
 
 ### 2. Pan 제스쳐
+
 ```
 let pan = UIPanGestureRecignizer(target: self, action: #selector(handlePanGesture))
 addGestureRecognizer(pan)
@@ -540,6 +576,7 @@ func resetCardPosition(sender: UIPanGestureRecognizer) {
 <br />
 
 ## 🤖 그라데이션
+
 ```
 private let gradient = CAGradientLayer()
 
@@ -553,6 +590,7 @@ layer.addSublayer(gradient)
 ## 🤖 MapKit
 
 ### 1. 형태
+
 ```
 import MapKit
 
@@ -566,9 +604,9 @@ private let mapView: MKMapView = {
 ```
 
 ### 2. 위치 정보 권한 요청
+
 info.plist에서 "Privacy - Location When In Use Usage Description" 와 값 설정
 <img width="909" alt="image" src="https://user-images.githubusercontent.com/86825214/210207712-5aaa7735-5ec0-4ef9-b859-ee9a19b63bc2.png">
-
 
 ```
 var locationManager: CLLocationManager?
@@ -582,10 +620,32 @@ override func viewDidLoad() {
   locationManager?.requestAlwaysAuthorization()
   locationManager?.requestLocation()
 }
+```
 
+### 3. CLLocationManagerDelegate
+
+```
 extension 뷰컨트롤러: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
+  }
+
+  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    guard let locationManager = locationManager, let location = locationManager.location else { return }
+
+    switch locationManager.authorizationStatus {
+    case .notDetermined, .restricted:
+      print("not")
+    case .denied:
+      print("denied")
+    
+    // 📌 항상 허용이거나 사용중에 허용일 때 줌인
+    case .authorizedAlways, .authorizedWhenInUse:
+      let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 750, longitudinalMeters: 750)
+      mapView.setRegion(region, animated: true)
+		default:
+			break
+    }
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError: error: Error) {
@@ -606,11 +666,10 @@ extension 뷰컨트롤러: CLLocationManagerDelegate {
 
 <br/>
 
-
-
 ## 📌 ETC
 
 ### 1. map | compackMap (nil을 제거?)
+
 ```
 let array = ["1", "2", "three", "//4", "5"]
 
@@ -622,11 +681,12 @@ let compactMapped: [Int] = array.compactMap { Int($0) } // [1, 2, 5]
 ### 2. UILabel autoshrink : 글자 길이에 맞게 자동으로 폰트 크기 조절
 
 ### 3. 상태바 속성 설정
+
 ```
 /**
   📌 앱 전체 상태바 설정
   info.plist에서 View controller-based status bar apprearance 를 NO로 작성
-  AppDelegate.swift에서 (_: didFinishLaunchingWithOptions:) 메소드에 
+  AppDelegate.swift에서 (_: didFinishLaunchingWithOptions:) 메소드에
  */
 
 UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -641,7 +701,7 @@ UIApplication.sharedApplication().statusBarStyle = .LightContent
 or
 UIApplication.shared.statusBarStyle = .lightContent
 
-// viewWillAppear()을 사용했으니 viewWillDisappear()롤 상태바 원상복구 
+// viewWillAppear()을 사용했으니 viewWillDisappear()롤 상태바 원상복구
 override func viewWillDisappear(animated: Bool) {
   super.viewWillDisappear(animated)
   UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
@@ -650,7 +710,8 @@ override func viewWillDisappear(animated: Bool) {
 }
 ```
 
-### 4. swiftui preview 사용하기 
+### 4. swiftui preview 사용하기
+
 ```
 #if DEBUG
 import SwiftUI
@@ -682,12 +743,14 @@ struct ViewControllerPrepresentable_PreviewProvider: PreviewProvider {
 ### 5. 뭔가 안될 때는 오토레이아웃 문제일 가능성이 높다. : 배경색 넣고 확인
 
 ### 6. UIView 마진
+
 ```
 isLayoutMarginsRelativeArrangement = true
 layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
 ```
 
 ### 7. UILabel.attributedText
+
 ```
 private let infoLabel: UILabel = {
   let label = UILabel()
@@ -698,6 +761,7 @@ private let infoLabel: UILabel = {
 ```
 
 ### 8. 뷰를 제일 상위로 끌어올리기
+
 ```
 view.bringSubviewToFront(뷰)
 ```
