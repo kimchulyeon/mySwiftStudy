@@ -9,6 +9,7 @@
 - [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰-활용)
 - [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
 - [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
+- [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
 - [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
 - [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
@@ -481,6 +482,74 @@ NSLayoutConstraint.activate([
 
 <br />
 
+## 🤖 제스쳐
+
+### 1. Tap 제스쳐 
+```
+let tap = UITapGestureRecignizer(target: self, action: #selector(handleTapGesture))
+addGestureRecognizer(tap)
+```
+
+### 2. Pan 제스쳐
+```
+let pan = UIPanGestureRecignizer(target: self, action: #selector(handlePanGesture))
+addGestureRecognizer(pan)
+
+@objc func handlePanGesture(sender: UITapGestureRecognizer) {
+  switch sender.state {
+  case .began:
+    superview?.subviews.forEach({ $0.layer.removeAllAnimations() })
+  case .changed:
+    panCard(sender: sender)
+  case .ended:
+    resetCardPosition(sender: sender)
+  default:
+    break
+  }
+}
+
+func resetCardPosition(sender: UIPanGestureRecognizer) {
+		let direction: SwipeDirection = sender.translation(in: nil).x > 100 ? .right : .left
+		let shouldDismissCard = abs(sender.translation(in: nil).x) > 100
+
+		UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+			if shouldDismissCard {
+				let xTranslation = CGFloat(direction.rawValue) * 1000
+				let offScreenTransform = self.transform.translatedBy(x: xTranslation, y: 0)
+				self.transform = offScreenTransform
+			} else {
+				self.transform = .identity
+			}
+		}) { _ in
+			if shouldDismissCard {
+				self.removeFromSuperview()
+			}
+		}
+	}
+	func panCard(sender: UIPanGestureRecognizer) {
+		let translation = sender.translation(in: nil)
+
+		let degrees: CGFloat = translation.x / 20
+		let angle = degrees * .pi / 180 // 📌 각도로 변환
+		let rotationalTransform = CGAffineTransform(rotationAngle: angle)
+
+		self.transform = rotationalTransform.translatedBy(x: translation.x, y: translation.y)
+	}
+```
+
+<br />
+
+## 🤖 그라데이션
+```
+private let gradient = CAGradientLayer()
+
+gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+gradient.locations = [0.5, 1, 1] // startPoint, endPoint, frame
+layer.addSublayer(gradient)
+```
+
+<br />
+
 ## 🤖 Daytour
 
 ### 1. ViewController의 view.translatesAutoresizingMaskIntoConstraints = false 를 하면 스타일링이 망가진다. 이유는 ?
@@ -580,4 +649,9 @@ private let infoLabel: UILabel = {
   label.attributedText = attributedText
   return label
 }()
+```
+
+### 8. 뷰를 제일 상위로 끌어올리기
+```
+view.bringSubviewToFront(뷰)
 ```
