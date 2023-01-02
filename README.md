@@ -550,6 +550,52 @@ layer.addSublayer(gradient)
 
 <br />
 
+## 🤖 MapKit
+
+### 1. 형태
+```
+import MapKit
+
+private let mapView: MKMapView = {
+		let map = MKMapView()
+		map.translatesAutoresizingMaskIntoConstraints = false
+		map.userTrackingMode = .follow
+		map.showsUserLocation = true
+		return map
+	}()
+```
+
+### 2. 위치 정보 권한 요청
+info.plist에서 "Privacy - Location When In Use Usage Description" 와 값 설정
+<img width="909" alt="image" src="https://user-images.githubusercontent.com/86825214/210207712-5aaa7735-5ec0-4ef9-b859-ee9a19b63bc2.png">
+
+
+```
+var locationManager: CLLocationManager?
+
+override func viewDidLoad() {
+  super.viewDidLoad()
+
+  locationManager = CLLocationManager()
+  locationManager?.delegate = self
+  locationManager?.requestWhenInUseAuthorization()
+  locationManager?.requestAlwaysAuthorization()
+  locationManager?.requestLocation()
+}
+
+extension 뷰컨트롤러: CLLocationManagerDelegate {
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+  }
+
+  func locationManager(_ manager: CLLocationManager, didFailWithError: error: Error) {
+
+  }
+}
+```
+
+<br />
+
 ## 🤖 Daytour
 
 ### 1. ViewController의 view.translatesAutoresizingMaskIntoConstraints = false 를 하면 스타일링이 망가진다. 이유는 ?
