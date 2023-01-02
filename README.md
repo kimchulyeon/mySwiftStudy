@@ -595,12 +595,12 @@ layer.addSublayer(gradient)
 import MapKit
 
 private let mapView: MKMapView = {
-		let map = MKMapView()
-		map.translatesAutoresizingMaskIntoConstraints = false
-		map.userTrackingMode = .follow
-		map.showsUserLocation = true
-		return map
-	}()
+  let map = MKMapView()
+  map.translatesAutoresizingMaskIntoConstraints = false
+  map.userTrackingMode = .follow
+  map.showsUserLocation = true
+  return map
+}()
 ```
 
 ### 2. 위치 정보 권한 요청
