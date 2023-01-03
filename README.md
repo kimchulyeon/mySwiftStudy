@@ -12,6 +12,7 @@
 - [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
 - [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
 - [그라데이션](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그라데이션)
+- [UIAlertController](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uialertcontroller)
 - [MapKit](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mapkit)
   - [검색으로 핀 지정](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#4-mklocalsearch)
   - [테이블뷰 띄우기](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#5-검색-즉시-테이블뷰-띄우기)
@@ -423,7 +424,8 @@ NSLayoutConstraint.activate([
   stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10,leading: 10,botton: 10,trailing: 10),
   stackView.layer.borderColor = UIColor.systemBlue.cgColor,
   stackView.layer.borderWidth = 2,
-  stackView.layer.cornerRadius = 10
+  stackView.layer.cornerRadius = 10,
+  stackView.clipsToBounds = true
 ])
 ```
 
@@ -587,6 +589,87 @@ gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
 gradient.locations = [0.5, 1, 1] // startPoint, endPoint, frame
 layer.addSublayer(gradient)
 ```
+
+<br />
+
+## 🤖 UIAlertController
+
+### 1. 형태 
+
+3개 이상의 action이 추가되면 수직 정렬로 바뀐다.
+
+preferredAction으로 버튼을 강조하고 우선순위를 높게 설정할 수 있다.
+
+preferredAction은 addAction을 하고 설정해줘야한다.
+
+preferredAction은 .alert에서만 사용가능하고 .actionSheet에서는 사용할 수 없다.
+```
+let controller = UIAlertController(title: "Hello", message: nil, preferredStyle: .alert)
+let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+  print(action.title)
+}
+
+controller.addAction(okAction)
+
+controller.preferredAction = okAction
+
+present(controller, animated: true, completion: nil)
+```
+
+<br />
+
+### 2. UIAlertController + textfield
+
+preferredStyle이 .alert일 경우에만 텍스트필드를 넣을 수 있다.
+
+```
+@IBAction func clickButton(_ sender: Any) {
+  idTextField.text = nil
+  passwordTextField.text = nil
+  
+  let alert = UIAlertController(title: "Hello", message: nil, preferredStyle: .alert)
+  
+  alert.addTextField { idTextField in
+    idTextField.attributedPlaceholder = NSAttributedString(string: "ID", attributes: [.foregroundColor: UIColor.red])
+  }
+  alert.addTextField { passwordTextField in
+    passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [.foregroundColor: UIColor.green])
+    passwordTextField.isSecureTextEntry = true
+  }
+
+  let okAction = UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+    if let fieldList = alert.textFields {
+      self?.idTextField.text = fieldList[0].text ?? ""
+      self?.passwordTextField.text = fieldList[1].text ?? ""
+    }
+  })
+  let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+
+  alert.addAction(okAction)
+  alert.addAction(cancelAction)
+  cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
+
+  present(alert, animated: true)
+}
+```
+
+<br />
+
+### 3. actionSheet
+ipad에서 actionSheet는 팝업으로 뜨기 때문에 위치 설정을 해줘야 한다.
+```
+let alert = UIAlertController(title: "Hello", message: nil, preferredStyle: .actionSheet)
+
+// 📌 IPad actionSheet
+if let pc = controller.popoverPresentationController {
+  pc.sourceRect = sender.frame
+  pc.sourceView = view
+}
+```
+
+<br />
+
+## 🤖 ImageView
 
 <br />
 
@@ -759,7 +842,7 @@ class PlacesTableViewController: UITableViewController {
 		return places.count
 	}
 	
-  
+
     // 📌 셀 생성
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath)
