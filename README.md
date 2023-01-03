@@ -13,6 +13,7 @@
 - [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
 - [그라데이션](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그라데이션)
 - [UIAlertController](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uialertcontroller)
+- [UIImageView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiimageview)
 - [MapKit](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mapkit)
   - [검색으로 핀 지정](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#4-mklocalsearch)
   - [테이블뷰 띄우기](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#5-검색-즉시-테이블뷰-띄우기)
@@ -670,6 +671,34 @@ if let pc = controller.popoverPresentationController {
 <br />
 
 ## 🤖 ImageView
+이미지를 설정해주었을 때 디폴트로 이미지의 크기를 갖는다.
+
+### 1. 이미지 애니메이션
+```
+let images = [
+  UIImage(systemName: "speaker1"),
+  UIImage(systemName: "speaker2"),
+  UIImage(systemName: "speaker3")
+]
+
+override func viewDidLoad() {
+  super.viewDidLoad()
+
+  imageView.animationImages = images
+}
+
+@IBOulet weak var imageView: UIImageView!
+
+@IBAction func clickStartButton(_ sender: Any) {
+  imageView.startAnimating()
+}
+
+@IBAction func clickStopButton(_ sender: Any) {
+  if imageView.isAnimation {
+    imageView.stopAnimating()
+  }
+}
+```
 
 <br />
 
