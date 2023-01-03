@@ -606,6 +606,7 @@ private let mapView: MKMapView = {
 ### 2. 위치 정보 권한 요청
 
 info.plist에서 "Privacy - Location When In Use Usage Description" 와 값 설정
+
 <img width="909" alt="image" src="https://user-images.githubusercontent.com/86825214/210207712-5aaa7735-5ec0-4ef9-b859-ee9a19b63bc2.png">
 
 ```
@@ -624,6 +625,10 @@ override func viewDidLoad() {
 
 ### 3. CLLocationManagerDelegate
 
+- CLLocationManager.authorizationStatus
+- MKCoordinateRegion(center:latitudinalMeters:longitudinalMeters:)
+- MKMapView.setRegion
+
 ```
 extension 뷰컨트롤러: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -638,7 +643,7 @@ extension 뷰컨트롤러: CLLocationManagerDelegate {
       print("not")
     case .denied:
       print("denied")
-    
+
     // 📌 항상 허용이거나 사용중에 허용일 때 줌인
     case .authorizedAlways, .authorizedWhenInUse:
       let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 750, longitudinalMeters: 750)
@@ -650,6 +655,30 @@ extension 뷰컨트롤러: CLLocationManagerDelegate {
 
   func locationManager(_ manager: CLLocationManager, didFailWithError: error: Error) {
 
+  }
+}
+```
+
+### 4. MKLocalSearch
+
+```
+func findNearbyPlaces(by searchInputText: String) {
+  mapView.removeAnnotations(mapView.annotations) // 📌 저장된 핀 제거
+
+  let request = MKLocalSearch.Request()
+  request.naturalLanguageQuery = searchInputText // 📌 검색 텍스트
+  request.region = mapView.region // 📌 setRegion을 해줌으로써 mapView.region값을 가지고 있다
+
+  search.start { [weak self] res, err in
+    guard let res = res, err == nil else { return }
+    let places = res.mapItems
+    places.forEach { place in
+      let annotation = MKPointAnnotation() // 📌 annotation 생성
+      annotation.coordinate = place.placemark.coordinate
+      annotation.title = place.name
+      annotation.subtitle = place.phoneNumber
+      self?.mapView.addAnnotation(annotation) // 📌 맵뷰에 annotation 추가
+    }
   }
 }
 ```
@@ -765,3 +794,7 @@ private let infoLabel: UILabel = {
 ```
 view.bringSubviewToFront(뷰)
 ```
+
+### 9. resignFirstResponder()
+
+키보드 사라짐
