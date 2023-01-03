@@ -13,6 +13,7 @@
 - [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
 - [그라데이션](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그라데이션)
 - [MapKit](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mapkit)
+  - [테이블뷰 띄우기](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-5-검색-즉시-테이블뷰-띄우기)
 - [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
 - [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
@@ -631,9 +632,7 @@ override func viewDidLoad() {
 
 ```
 extension 뷰컨트롤러: CLLocationManagerDelegate {
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-  }
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { ... }
 
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
     guard let locationManager = locationManager, let location = locationManager.location else { return }
@@ -653,9 +652,7 @@ extension 뷰컨트롤러: CLLocationManagerDelegate {
     }
   }
 
-  func locationManager(_ manager: CLLocationManager, didFailWithError: error: Error) {
-
-  }
+  func locationManager(_ manager: CLLocationManager, didFailWithError: error: Error) { ... }
 }
 ```
 
@@ -679,6 +676,38 @@ func findNearbyPlaces(by searchInputText: String) {
       annotation.subtitle = place.phoneNumber
       self?.mapView.addAnnotation(annotation) // 📌 맵뷰에 annotation 추가
     }
+  }
+}
+```
+
+### 5. 검색 즉시 테이블뷰 띄우기
+```
+...
+search.start { [weak self] res, err in
+  guard let res = res, err == nil else { return }
+  let places = res.mapItems
+  places.forEach { place in
+    let annotation = MKPointAnnotation() // 📌 annotation 생성
+    annotation.coordinate = place.placemark.coordinate
+    annotation.title = place.name
+    annotation.subtitle = place.phoneNumber
+    self?.mapView.addAnnotation(annotation) // 📌 맵뷰에 annotation 추가
+  }
+
+  // ✅
+  self?.presentPlacesTable()
+}
+
+// 📌
+func presentPlacesTable() {
+  let placeTVC = PlacesTableViewController()
+  placeTVC.modalPresentationStyle = .pageSheet
+
+  if let sheet = placeTVC.sheetPresentationController {
+    sheet.preferGrabberVisible = true
+    sheet.detents = [.medium(), .large()]
+
+    present(placeTVC, animated: true)
   }
 }
 ```
