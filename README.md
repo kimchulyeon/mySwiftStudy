@@ -13,7 +13,9 @@
 - [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
 - [그라데이션](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그라데이션)
 - [MapKit](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mapkit)
+  - [검색으로 핀 지정](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#4-mklocalsearch)
   - [테이블뷰 띄우기](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#5-검색-즉시-테이블뷰-띄우기)
+  - [셀 생성](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#6-테이블뷰에-검색된-장소-데이터-넘겨주고-셀-생성)
 - [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
 - [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
@@ -681,6 +683,7 @@ func findNearbyPlaces(by searchInputText: String) {
 ```
 
 ### 5. 검색 즉시 테이블뷰 띄우기
+
 ```
 ...
 search.start { [weak self] res, err in
@@ -710,6 +713,71 @@ func presentPlacesTable() {
     present(placeTVC, animated: true)
   }
 }
+```
+
+### 6. 테이블뷰에 검색된 장소 데이터 넘겨주고 셀 생성
+
+```
+// 📌 매개변수로 장소 데이터 넘겨주기
+func presentPlacesTable(places: [PlaceAnnotations]) {
+  guard let locationManager = locationManager, let userLocation = locationManager.location else { return }
+
+  // 📌 테이블뷰컨트롤러에 사용자위치와 검색된 장소들을 넘겨준다.
+  let placeTVC = PlacesTableViewController(userLocation: userLocation, places: places)
+  placeTVC.modalPresentationStyle = .pageSheet
+
+  if let sheet = placeTVC.sheetPresentationController {
+    sheet.preferGrabberVisible = true
+    sheet.detents = [.medium(), .large()]
+
+    present(placeTVC, animated: true)
+  }
+}
+
+
+// ✅ PlaceTableViewController 내부 | 셀 생성
+import UIKit
+import MapKit
+
+class PlacesTableViewController: UITableViewController {
+	//MARK: - Properties
+	var userLocation: CLLocation
+	let places: [PlaceAnnotations]
+	
+	init(userLocation: CLLocation, places: [PlaceAnnotations]) {
+		self.userLocation = userLocation
+		self.places = places
+
+		super.init(nibName: nil, bundle: nil)
+
+    // 📌 셀 등록
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PlaceCell")
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return places.count
+	}
+	
+  // 📌 셀 생성
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath)
+		let place = places[indexPath.row]
+		
+		var content = cell.defaultContentConfiguration()
+		content.text = place.name
+		content.secondaryText = "Secondary"
+		
+		cell.contentConfiguration = content
+		
+		return cell
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+}
+
+
 ```
 
 <br />
