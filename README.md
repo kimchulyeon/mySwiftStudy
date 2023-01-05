@@ -1012,4 +1012,107 @@ view.bringSubviewToFront(뷰)
 
 키보드 사라짐
 
+<br />
+<br />
+<br />
+
 # 📱 SWIFT
+
+## 🥑 클로져
+
+> 클로져는 호출 할 때 파라미터 이름을 적지 않는다.     
+> 클로져호출(name: "kim") ❌  
+> 클로져호출("kim") 🟢
+
+기본 형태
+```
+// 📌 () -> Void : 인자를 받지 않고 리턴도 하지않는 클로져
+let myClosure = { () -> Void in
+  print("hello world")
+}
+
+myClosure()
+
+
+// 📌 (String) -> Void : 인자로 문자열을 받고 리턴을 하지 앟는 클로져
+let myClosure2 = { (word: String) -> Void in
+  print(word)
+}
+
+myClosure2("Hello World!!!")
+```
+
+<br />
+
+압축 형태
+```
+let myClosure2: (String) -> Void = {
+  print($0)
+}
+```
+
+<br />
+
+즉시 싫앵 클로져 : {}()
+```
+let myTotalNumber = { () -> Int in
+  var total = 0
+  for number in stride(from: 1, through: 9, by: 1) {
+    total += number
+  }
+  return total
+}()
+
+print(myTotalNumber())       // 45
+```
+
+<br />
+
+⭐️ 클로져를 인자로 받는 함수
+```
+let multiply = { (number1: Int, number2: Int) -> Int in 
+  return number1 * number2
+}
+
+// 📌 인자로 (Int, Int) -> Int 모양의 클로져를 받는다
+func getClosureFunc(closure: (Int, Int) -> Int) -> String {
+  let caculatedNumber = closure(5, 10)
+  return "this is the result \(caculatedNumber)"
+}
+
+// 📌 인자로 변수로 저장된 클로져를 넣어줄 때
+getClosureFunc(closure: multiply)
+
+
+// 📌 인자로 바로 클로져를 넣어줄 때
+getClosureFunc(closure: {(num1: Int, num2: Int) -> Int in
+  return num1 * num2 * 0
+})
+
+// 📌📌📌 인자로 바로 클로져를 넣어줄 때 압축
+// ⭐️ getClosureFunc를 선언할 때 인자로 받을 클로져의 매개변수를 이미 선언했다.
+getClosureFunc() {
+  $0 * $1 * 10
+}
+
+getClosureFunc {
+  $0 * $1 * 10
+}
+```
+
+<br />
+
+⭐️ 외부에 접근한 클로져는 @escaping를 선언해줘야한다.
+```
+var myClosure: () -> Void = {}
+
+func makeNewClosure(closure: @escaping () -> Void) {
+  myClosure = closure
+}
+
+makeNewClosure {
+  print("hello world")
+}
+
+myClosure()       // "hello world"
+```
