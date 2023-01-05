@@ -3,25 +3,30 @@
 << 목차 >>
 
 - [SWIFT 문법](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-swift)
-
-- [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
-- [UIControl](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uicontrol)
-- [@IBInspectable](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-ibinspectable)
-- [그림자](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그림자)
-- [스택뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰)
-- [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰-활용)
-- [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
-- [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
-- [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
-- [그라데이션](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그라데이션)
-- [UIAlertController](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uialertcontroller)
-- [UIImageView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiimageview)
-- [MapKit](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mapkit)
-  - [검색으로 핀 지정](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#4-mklocalsearch)
-  - [테이블뷰 띄우기](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#5-검색-즉시-테이블뷰-띄우기)
-  - [셀 생성](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#6-테이블뷰에-검색된-장소-데이터-넘겨주고-셀-생성)
-- [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
-- [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
+  - [클로져](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-클로져)
+  - [Struct](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-struct)
+    - [keyPath](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-keypath)
+    - [method](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-method)
+  ---
+  UIKit
+  - [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
+  - [UIControl](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uicontrol)
+  - [@IBInspectable](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-ibinspectable)
+  - [그림자](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그림자)
+  - [스택뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰)
+  - [스택뷰활용](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스택뷰-활용)
+  - [커스텀뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-커스텀뷰)
+  - [스크롤뷰](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-스크롤뷰)
+  - [제스쳐](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제스쳐)
+  - [그라데이션](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-그라데이션)
+  - [UIAlertController](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uialertcontroller)
+  - [UIImageView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiimageview)
+  - [MapKit](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mapkit)
+    - [검색으로 핀 지정](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#4-mklocalsearch)
+    - [테이블뷰 띄우기](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#5-검색-즉시-테이블뷰-띄우기)
+    - [셀 생성](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#6-테이블뷰에-검색된-장소-데이터-넘겨주고-셀-생성)
+  - [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
+  - [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
 <br/>
 
@@ -1053,7 +1058,7 @@ let myClosure2: (String) -> Void = {
 
 <br />
 
-즉시 싫앵 클로져 : {}()
+즉시 실행 클로져 : {}()
 ```
 let myTotalNumber = { () -> Int in
   var total = 0
@@ -1102,7 +1107,7 @@ getClosureFunc {
 
 <br />
 
-⭐️ 외부에 접근한 클로져는 @escaping를 선언해줘야한다.
+⭐️ 외부의 요소에 접근한 클로져는 @escaping를 선언해줘야한다.
 ```
 var myClosure: () -> Void = {}
 
@@ -1115,4 +1120,123 @@ makeNewClosure {
 }
 
 myClosure()       // "hello world"
+```
+
+<br />
+
+## 🥑 Struct
+> 코드까지 포함한 커스텀 타입
+
+기본 형태 
+```
+// 📌 struct
+struct Item {
+  var name: String = "Not defined"
+  var price: Double = 0
+}
+
+// 📌 struct로 생성된 인스턴스
+var fruitItem: Item = Item()
+fruitItem.name = "banana"
+fruitItem.price = 10.0
+```
+
+<br />
+
+구조체 안에 구조체
+```
+struct Price {
+  var USD = 0.0
+  var CAD = 0.0
+}
+
+struct Item {
+  var name: String = "not defined"
+  var price: Price = Price()       📌
+}
+
+var puchase = Item()
+purchase.name = "Banana"
+puchase.price.USD = 10.50
+```
+
+<br />
+
+구조체 안에 구조체 + 옵셔널
+```
+struct Price {
+  var USD = 0.0
+  var CAD = 0.0
+}
+
+struct Item {
+  var name: String = "not defined"
+  var price: Price?         📌
+}
+
+var puchase = Item()
+purchase.name = "Banana"
+puchase.price?.USD = 10.50  📌
+```
+
+<br />
+
+### 🥑 keyPath 
+```
+struct Item {
+  let name: String
+  let price: Double
+}
+
+var purchase: Item = Item(name: "Milk", price: 12.50)
+
+print(purchase.price)
+print(purchase[keyPath: \.Item.price])
+```
+
+<br />
+
+### 🥑 method
+```
+struct Item {
+  var name = "not defined"
+  var price = 0.0
+
+  func total(quantity: Double) -> Double {
+    return price * quantity
+  }
+}
+
+var purchase = Item()
+purchase.price = 12.00
+
+purchase.total(quantitiy: 2)    // 24.00
+```
+
+<br />
+
+### 🥑 mutating method
+```
+struct Item {
+  var name = "not defined"
+  var price = 0.0
+
+  mutating func changePrice(newPrice: Double) -> Double {
+    price = newPrice
+  }
+}
+
+var purchase = Item()
+purchase.price = 12.00
+
+purchase.changePrice(newPrice: 10.00)    
+purchase.price   // 10.00
+```
+
+<br />
+
+### 🥑 init
+
+```
+
 ```
