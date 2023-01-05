@@ -7,6 +7,15 @@
   - [Struct](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-struct)
     - [keyPath](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-keypath)
     - [method](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-method)
+    - [mutationg method](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-mutating-method)
+    - [init](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-init)
+    - [getter setter](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-getter-setter)
+    - [didSet willSet](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-didset-willset)
+    - [static](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-static)
+    - [제네릭 struct](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제네릭-struct)
+  - [프로토콜](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-프로토콜)
+    - [제네릭 프로토콜](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-제네릭-프로토콜)
+  - [이것저것](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-이것저것-기초)
   ---
   UIKit
   - [UIView](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-uiview)
@@ -1181,7 +1190,7 @@ puchase.price?.USD = 10.50  📌
 
 <br />
 
-### 🥑 keyPath 
+### keyPath 
 ```
 struct Item {
   let name: String
@@ -1196,7 +1205,7 @@ print(purchase[keyPath: \.Item.price])
 
 <br />
 
-### 🥑 method
+### method
 ```
 struct Item {
   var name = "not defined"
@@ -1215,7 +1224,7 @@ purchase.total(quantitiy: 2)    // 24.00
 
 <br />
 
-### 🥑 mutating method
+### mutating method
 ```
 struct Item {
   var name = "not defined"
@@ -1235,8 +1244,150 @@ purchase.price   // 10.00
 
 <br />
 
-### 🥑 init
+### init
 
 ```
+struct Item {
+  var name: String
+  var price: Double
 
+  init(name: String, price: Double) {
+    self.name = name
+    self.price = price
+  }
+}
+
+let product = Item(name: "banana", price: 10.30)
+```
+
+<br />
+
+### getter setter
+
+> get set을 프로퍼티에 직접 연결할 수 없다. 저장소 프로퍼티를 언더바(_)로 구분
+
+```
+struct Price {
+  var _USD: Double
+
+  var USD: Double {
+    get {
+      return _USD
+    }
+    set {
+      return _USD = newValue
+    }
+  }
+}
+
+struct Point {
+  var x: Int = 0
+  var y: Int = 0
+
+  var oppositePoint: Point {
+    get {
+      return Point(x: -x, y: -y)
+    }
+    set {
+      x = -newValue.x
+      y = -newValue.y
+    }
+  }
+}
+```
+
+<br />
+
+### didSet willSet
+```
+struct Price {
+  var increment: Double = 0
+  var oldPrice: Double = 0
+
+  var price: Double {
+    willSet {
+      increment = newValue - price
+    }
+    didSet {
+      oldPrice = oldValue
+    }
+  }
+}
+
+var item = Price(price: 15.95)
+item.price = 20.00
+
+print(item.increment) // 4.05
+print(item.oldValue)  // 15.95 
+```
+
+<br />
+
+### static
+> static을 붙여주면 인스턴스에서 접근 불가능
+
+```
+struct Price {
+  var USD: Double
+
+  static var CAD = 123
+}
+
+var money = Price(USD: 20.5)
+money.CAD ❌
+Price.CAD 🟢
+```
+
+<br />
+
+### 🥑 제네릭 struct
+
+```
+struct MyStruct<T> {
+  var myValue: T
+
+  func description() {
+    print("My value is \(myValue)")
+  }
+}
+
+let instance = MyStruct<String>(myValue: "hello world")
+```
+
+<br />
+
+## 🥑 프로토콜
+
+<br />
+
+### 제네릭 프로토콜
+```
+protocol Printer {
+  associatedtype protype
+  var name: protype { get set }
+}
+
+struct Employees: Printer {
+  var name: String
+}
+
+let employee = Employees(name: "kim")
+```
+
+## 🥑 이것저것 기초
+
+<br />
+
+### %d
+```
+let user = "kim"
+var myText = String.localizedStringWithFormat("My name is %d", user)
+```
+
+<br/> 
+
+### %f
+```
+let length = 12.3456
+let decimals = String.localizedStringWithFormat("Decimals: %.2f", length)
 ```
