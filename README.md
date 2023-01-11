@@ -35,6 +35,7 @@
     - [테이블뷰 띄우기](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#5-검색-즉시-테이블뷰-띄우기)
     - [셀 생성](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#6-테이블뷰에-검색된-장소-데이터-넘겨주고-셀-생성)
   - [Daytour 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-daytour)
+  - [TODO 하면서 배운 것들](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-todo)
   - [ETC](https://github.com/kimchulyeon/mySwiftStudy/blob/main/README.md#-etc)
 
 <br/>
@@ -919,6 +920,49 @@ class PlacesTableViewController: UITableViewController {
 ### 2. navigationController?.pushViewController(controller, animated: true)할 때 view의 backgroundColor를 설정해주지 않으면 이전 페이지가 잔상처럼 보인다.
 
 ### 3. 파이어베이스를 적용할 때 DATABASE_URL을 info.plist에 넣어줘야한다.
+
+<br/>
+
+## 🤖 TODO
+- enum을 배열처럼 사용 : CaseIterable, allCases
+
+- insertSegment(withTitle:at:animated:)
+
+- \[StoryBoard] ViewController를 View안에 넣으면 embed된 View 네모가 생긴다.
+
+- \[StoryBoard] ViewController를 cmd + shift + L로 생성해서 UIView에서 드래그에서 ViewController에 놓으면 embed시킬 수 있다.
+
+- 우측 사이드바 identifier에서 user defined runtime attributes에 속성 추가 가능
+
+- viewController에서 끌어다가 다른 viewController에 놓고 present modally + performSegue(withIdentifier:sender:)
+
+- viewController끼리 연결된 segue선을 클릭하고 presentation(형태), transition(애니메이션) 설정
+
+- viewController 배경 투명 + 전체사이즈 View 투명 회색 = 오버레이
+
+- View의 높이를 지정하지 않고 button이나 다른 객체의 크기로 유동적으로 높이 설정 가능
+
+- horizontal stackView에 버튼 하나를 넣으면 전체 너비를 갖는다
+
+- viewDidAppear() viewDidDisappear()
+
+- tapGesture + dismiss
+
+- 키보드가 View를 가릴 때 : NotificationCenter (옵저버 패턴)
+  - 키보드 높이 구하기
+  - UIView.animate() + layoutIfNeeded()
+```
+NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+@objc func keyboardWillShow(notification: Notification) {
+  let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
+
+  UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: { [unowned self] in
+    self.containerViewBottomConstraint.constant = keyboardHeight - (200 + 8)
+    self.view.layoutIfNeeded()
+  })
+}
+```
 
 <br/>
 
